@@ -1,1 +1,36 @@
 https://www.twilio.com/en-us/blog/working-with-environment-variables-in-java
+
+
+implementation 'io.github.cdimascio:dotenv-java:2.2.4'
+Crea un file .env:
+Ad esempio, crea un file chiamato .env nella directory principale del tuo progetto con il seguente contenuto:
+
+env
+Copy code
+DATABASE_URL=jdbc:mysql://localhost:3306/mydatabase
+DATABASE_USER=root
+DATABASE_PASSWORD=example
+Carica e stampa il contenuto del file .env in Java:
+Ora, crea una classe Java per caricare e stampare il contenuto del file .env.
+
+java
+Copy code
+import io.github.cdimascio.dotenv.Dotenv;
+
+public class EnvLoader {
+    public static void main(String[] args) {
+        // Carica il file .env
+        Dotenv dotenv = Dotenv.load();
+
+        // Ottieni e stampa le variabili d'ambiente
+        String databaseUrl = dotenv.get("DATABASE_URL");
+        String databaseUser = dotenv.get("DATABASE_USER");
+        String databasePassword = dotenv.get("DATABASE_PASSWORD");
+
+        System.out.println("DATABASE_URL: " + databaseUrl);
+        System.out.println("DATABASE_USER: " + databaseUser);
+        System.out.println("DATABASE_PASSWORD: " + databasePassword);
+    }
+}
+Esegui il programma:
+Compila ed esegui il programma per vedere l'output delle variabili d'ambiente caricate dal file .env.
